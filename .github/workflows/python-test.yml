@@ -46,6 +46,8 @@ jobs:
       run: tox
 
     - name: Upload coverage data to coveralls.io
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         pip install coveralls
         coveralls --service=github
