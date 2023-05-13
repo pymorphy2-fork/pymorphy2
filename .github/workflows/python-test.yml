@@ -6,14 +6,14 @@ on:
     paths:
       - 'tox.ini'
       - '**.py'
-      - '.github/workflows/python-tests.yml'
+      - '.github/workflows/python-test.yml'
 
   pull_request:
     branches: [ "master" ]
     paths:
       - 'tox.ini'
       - '**.py'
-      - '.github/workflows/python-tests.yml'
+      - '.github/workflows/python-test.yml'
 
 permissions:
   contents: read
