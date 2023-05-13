@@ -15,6 +15,7 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.7", "3.8", "3.9", "3.10"]
+        speed: ["fast", "slow"]
         
     steps:
     - uses: actions/checkout@v3
@@ -30,4 +31,6 @@ jobs:
         pip install tox tox-gh-actions
         
     - name: Test with tox
+      env:
+        TOXENV: ${{ matrix.speed }}
       run: tox
