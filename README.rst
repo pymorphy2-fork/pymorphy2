@@ -8,9 +8,9 @@ for Russian and Ukrainian languages. License is MIT.
    :target: https://pypi.python.org/pypi/pymorphy2
    :alt: PyPI Version
 
-.. image:: https://travis-ci.com/kmike/pymorphy2.svg?branch=master
-   :target: https://travis-ci.com/kmike/pymorphy2
-   :alt: Build Status
+.. image:: https://github.com/pymorphy-community/pymorphy2/actions/workflows/python-test.yml/badge.svg
+   :target: https://github.com/pymorphy-community/pymorphy2/actions/workflows/python-test.yml
+   :alt: Test Status
 
 .. image:: https://codecov.io/github/kmike/pymorphy2/coverage.svg?branch=master
    :target: https://codecov.io/github/kmike/pymorphy2?branch=master
