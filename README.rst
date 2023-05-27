@@ -12,8 +12,8 @@ for Russian and Ukrainian languages. License is MIT.
    :target: https://github.com/pymorphy-community/pymorphy2/actions/workflows/python-test.yml
    :alt: Test Status
 
-.. image:: https://coveralls.io/repos/github/pymorphy-community/pymorphy2/badge.svg?branch=master
-   :target: https://coveralls.io/github/pymorphy-community/pymorphy2?branch=master
+.. image:: https://coveralls.io/repos/github/pymorphy2-fork/pymorphy2/badge.svg?branch=master
+   :target: https://coveralls.io/github/pymorphy2-fork/pymorphy2?branch=master
    :alt: Code Coverage
 
 .. image:: https://readthedocs.org/projects/pymorphy2/badge/?version=latest
