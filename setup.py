@@ -39,7 +39,7 @@ if py_version < (3, 0):
 
 extras_require = {'fast': []}
 if is_cpython:
-    extras_require['fast'].append("DAWG2 >= 0.8")
+    extras_require['fast'].append("DAWG2 >= 0.9")
     if py_version < (3, 5):
         # lru_cache is optimized in Python 3.5
         extras_require['fast'].append("fastcache >= 1.0.2")
