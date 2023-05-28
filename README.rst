@@ -21,10 +21,10 @@ for Russian and Ukrainian languages. License is MIT.
    :alt: Documentation
 
 * docs: https://pymorphy2.readthedocs.io
-* changelog: https://github.com/kmike/pymorphy2/blob/master/CHANGES.rst
+* changelog: https://github.com/pymorphy2-fork/pymorphy2/blob/master/CHANGES.rst
 * source code: github_
-* bug tracker: https://github.com/kmike/pymorphy2/issues
-* support: https://groups.google.com/forum/?fromgroups#!forum/pymorphy
+* bug tracker: https://github.com/pymorphy2-fork/pymorphy2/issues
+* discussions: https://github.com/orgs/pymorphy2-fork/discussions
 
 .. _github: https://github.com/kmike/pymorphy2
 
