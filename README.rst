@@ -26,7 +26,7 @@ for Russian and Ukrainian languages. License is MIT.
 * bug tracker: https://github.com/pymorphy2-fork/pymorphy2/issues
 * discussions: https://github.com/orgs/pymorphy2-fork/discussions
 
-.. _github: https://github.com/kmike/pymorphy2
+.. _github: https://github.com/pymorphy2-fork/pymorphy2
 
 Citing
 ------
