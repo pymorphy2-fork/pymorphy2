@@ -31,7 +31,7 @@ py_version = sys.version_info[:2]
 install_requires = [
     'dawg-python >= 0.7.1',
     'pymorphy2-dicts-ru >=2.4, <3.0',
-    'docopt >= 0.6',
+    'docopt-ng >= 0.6',
 ]
 if py_version < (3, 0):
     install_requires.append("backports.functools_lru_cache >= 1.0.1")
