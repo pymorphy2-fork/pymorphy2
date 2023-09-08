@@ -131,7 +131,7 @@ class Dictionary:
         (default empty prefix means "all words").
         """
 
-        for word, (para_id, idx) in self.words.items(prefix):
+        for word, (para_id, idx) in self.words.iteritems(prefix):  # .items() of DAWG returns a list
             tag = self.build_tag_info(para_id, idx)
             normal_form = self.build_normal_form(para_id, idx, word)
             yield word, tag, normal_form, para_id, idx
