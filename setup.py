@@ -1,7 +1,9 @@
 #!/usr/bin/env python
-import sys
 import platform
+
 from setuptools import setup
+
+
 # from Cython.Build import cythonize
 
 
@@ -19,7 +21,6 @@ def get_version():
 # }
 
 is_cpython = platform.python_implementation() == 'CPython'
-py_version = sys.version_info[:2]
 
 
 install_requires = [

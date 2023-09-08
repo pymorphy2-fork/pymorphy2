@@ -1,4 +1,3 @@
-import codecs
 import logging
 import operator
 import sys
@@ -9,8 +8,6 @@ import pymorphy2
 from pymorphy2.cache import memoized_with_single_argument
 from pymorphy2.tokenizers import simple_word_tokenize
 from pymorphy2.utils import get_mem_usage
-
-PY2 = sys.version_info[0] == 2
 
 # Hacks are here to make docstring compatible with both
 # docopt and sphinx.ext.autodoc.
@@ -77,10 +74,7 @@ def main(argv=None):
         else:
             score, lemmatize, tag = True, True, True
 
-        if PY2:
-            out_file = codecs.getwriter('utf8')(sys.stdout)
-        else:
-            out_file = sys.stdout
+        out_file = sys.stdout
 
         return parse(
             morph=morph,
@@ -109,14 +103,9 @@ def main(argv=None):
 def _open_for_read(fn):
     """ Open a file for reading """
     if fn in ['-', '', None]:
-        if PY2:
-            return codecs.getreader('utf8')(sys.stdin)
-        else:
-            return sys.stdin
-    if PY2:
-        return codecs.open(fn, 'rt', encoding='utf8')
-    else:
-        return open(fn, 'rt', encoding='utf8')
+        return sys.stdin
+
+    return open(fn, 'rt', encoding='utf8')
 
 
 # ============================ Commands ===========================

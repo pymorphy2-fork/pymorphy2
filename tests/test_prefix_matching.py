@@ -14,6 +14,7 @@ PREFIXES = [
     ['кот', []],
 ]
 
+
 @pytest.mark.parametrize('matcher_cls', MATCHERS)
 @pytest.mark.parametrize(['word', 'is_prefixed'], HAS_PREFIXES)
 def test_prefix_matcher_is_prefixed(matcher_cls, word, is_prefixed):
