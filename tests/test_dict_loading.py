@@ -14,7 +14,7 @@ def test_old_dictionaries_supported():
 
 
 def test_old_dictionaries_not_installed():
-    if not find_spec("pymorphy2_dicts"):
+    if find_spec("pymorphy2_dicts"):
         pytest.skip("pymorphy2_dicts package is installed")
 
     with pytest.raises(ValueError):
