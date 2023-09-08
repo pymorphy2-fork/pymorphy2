@@ -79,8 +79,7 @@ class BaseAnalyzerUnit:
         )
 
 
-
-class AnalogyAnalizerUnit(BaseAnalyzerUnit):
+class AnalogyAnalyzerUnit(BaseAnalyzerUnit):
 
     def normalized(self, form):
         base_analyzer, this_method = self._method_info(form)

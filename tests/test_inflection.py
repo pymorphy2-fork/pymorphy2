@@ -81,9 +81,9 @@ def test_second_cases(word, grammemes, result, morph):
 @with_test_data([
     ('валенок', ['gent', 'sing'], 'валенка'),
     ('валенок', ['gen2', 'sing'], 'валенка'),  # there is no gen2
-    ('велосипед', ['loct'], 'велосипеде'), # о велосипеде
-    ('велосипед', ['loc2'], 'велосипеде'), # а тут второго предложного нет, в велосипеде
-    ('хомяк', ['voct'], 'хомяк'),        # there is not voct, nomn should be used
+    ('велосипед', ['loct'], 'велосипеде'),  # о велосипеде
+    ('велосипед', ['loc2'], 'велосипеде'),  # а тут второго предложного нет, в велосипеде
+    ('хомяк', ['voct'], 'хомяк'),  # there is not voct, nomn should be used
     ('Геннадий', ['voct'], 'Геннадий'),  # there is not voct, nomn should be used
 ])
 def test_case_substitution(word, grammemes, result, morph):

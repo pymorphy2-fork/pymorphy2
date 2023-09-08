@@ -9,7 +9,7 @@ at how similar known words are analyzed.
 import operator
 
 from pymorphy2.dawg import PrefixMatcher
-from pymorphy2.units.base import AnalogyAnalizerUnit
+from pymorphy2.units.base import AnalogyAnalyzerUnit
 from pymorphy2.units.by_lookup import DictionaryAnalyzer
 from pymorphy2.units.utils import (
     add_parse_if_not_seen,
@@ -22,7 +22,7 @@ from pymorphy2.utils import word_splits
 _cnt_getter = operator.itemgetter(3)
 
 
-class _PrefixAnalyzer(AnalogyAnalizerUnit):
+class _PrefixAnalyzer(AnalogyAnalyzerUnit):
 
     def normalizer(self, form, this_method):
         prefix = this_method[1]
@@ -109,7 +109,7 @@ class UnknownPrefixAnalyzer(_PrefixAnalyzer):
         self.score_multiplier = score_multiplier
 
     def init(self, morph):
-        super(AnalogyAnalizerUnit, self).init(morph)
+        super(AnalogyAnalyzerUnit, self).init(morph)
         self.dict_analyzer = DictionaryAnalyzer()
         self.dict_analyzer.init(morph)
 
@@ -151,7 +151,7 @@ class UnknownPrefixAnalyzer(_PrefixAnalyzer):
         return result
 
 
-class KnownSuffixAnalyzer(AnalogyAnalizerUnit):
+class KnownSuffixAnalyzer(AnalogyAnalyzerUnit):
     """
     Parse the word by checking how the words with similar suffixes
     are parsed.
