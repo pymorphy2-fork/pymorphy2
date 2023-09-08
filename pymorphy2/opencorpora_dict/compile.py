@@ -10,11 +10,6 @@ import logging
 import operator
 import os
 
-try:
-    izip = itertools.izip
-except AttributeError:
-    izip = zip
-
 from pymorphy2 import dawg
 from pymorphy2.utils import (
     longest_common_substring,
@@ -119,7 +114,7 @@ def compile_parsed_dict(parsed_dict, compile_options=None):
     logger.debug("linearizing paradigms")
 
     def get_form(para):
-        return list(next(izip(*para)))
+        return list(next(zip(*para)))
 
     forms = [get_form(para) for para in paradigms]
     suffixes = sorted(set(list(itertools.chain(*forms))))

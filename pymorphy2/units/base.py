@@ -1,3 +1,5 @@
+from inspect import getfullargspec
+
 from pymorphy2.units.utils import (
     without_last_method,
     append_method,
@@ -5,19 +7,9 @@ from pymorphy2.units.utils import (
 )
 from pymorphy2.utils import kwargs_repr
 
-try:
-    from inspect import getargspec
-    
-    def inspect_args(func):
-        args, varargs, kw, default = getargspec(func)
-        return args
 
-except ImportError:
-    # inspect.getargspec was deprecated in 3.0
-    from inspect import getfullargspec
-
-    def inspect_args(func):
-        return getfullargspec(func).args
+def inspect_args(func):
+    return getfullargspec(func).args
 
 
 class BaseAnalyzerUnit(object):

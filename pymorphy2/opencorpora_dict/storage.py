@@ -5,19 +5,13 @@ module for saving and loading pymorphy2 dictionaries.
 import array
 import collections
 import datetime
-import itertools
 import logging
 import os
 import struct
 
-try:
-    izip = itertools.izip
-except AttributeError:
-    izip = zip
-
 import pymorphy2
-from pymorphy2 import tagset
 from pymorphy2 import dawg
+from pymorphy2 import tagset
 from pymorphy2.utils import json_write, json_read
 
 logger = logging.getLogger(__name__)

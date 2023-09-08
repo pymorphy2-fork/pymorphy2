@@ -9,14 +9,6 @@ Also, it provides a caching decorator for functions with a single argument.
 """
 import functools
 
-try:
-    from fastcache import clru_cache as lru_cache
-except ImportError:
-    try:
-        from functools import lru_cache
-    except ImportError:
-        from backports.functools_lru_cache import lru_cache
-
 
 def memoized_with_single_argument(cache):
     """
