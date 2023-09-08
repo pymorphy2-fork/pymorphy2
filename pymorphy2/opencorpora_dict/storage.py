@@ -109,7 +109,7 @@ def save_compiled_dict(compiled_dict, out_path, source_name, language_code):
     logger.debug("computing metadata..")
 
     def _dawg_len(dawg):
-        return sum(1 for k in dawg.keys())
+        return sum(1 for k in dawg.iterkeys())  # method .keys() of DAWG/DAWG-Python returns a list
 
     logger.debug('  words_dawg_len')
     words_dawg_len = _dawg_len(compiled_dict.words_dawg)
