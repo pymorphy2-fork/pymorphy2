@@ -12,6 +12,7 @@ def parse_lexemes(lexemes_txt):
     )
     return lexemes_txt.split("\n\n")
 
+
 def get_lexeme_words(lexeme):
     lexeme_words = tuple(lexeme.split())
     if lexeme_words[0].startswith('XFAIL'):
@@ -235,4 +236,3 @@ def _lexemes_for_word(word, morph):
     for p in morph.parse(word):
         res.append(tuple(f.word for f in p.lexeme))
     return res
-

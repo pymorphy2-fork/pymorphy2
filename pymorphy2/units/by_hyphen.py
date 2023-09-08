@@ -338,7 +338,7 @@ class HyphenatedWordsAnalyzer(BaseAnalyzerUnit):
             score = (left[3] + right[3]) / 2
             method_stack = ((self, left[4], right[4]), )
 
-            yield (word, tag, normal_form, score, method_stack)
+            yield word, tag, normal_form, score, method_stack
 
     def _align_lexeme_forms(self, left_lexeme, right_lexeme):
         # FIXME: quadratic algorithm

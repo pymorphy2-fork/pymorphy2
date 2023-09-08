@@ -33,7 +33,7 @@ class Parse(_Parse):
         res = self._morph._inflect(self, required_grammemes)
         return None if not res else res[0]
 
-    def make_agree_with_number(self, num, animacy = None):
+    def make_agree_with_number(self, num, animacy=None):
         """
         Inflect the word so that it agrees with ``num``
         """
@@ -74,13 +74,13 @@ class ProbabilityEstimator:
             return parses
 
         probs = [self.p_t_given_w.prob(word_lower, tag)
-                for (word, tag, normal_form, score, methods_stack) in parses]
+                 for (word, tag, normal_form, score, methods_stack) in parses]
 
         if sum(probs) == 0:
             # no P(t|w) information is available; return normalized estimate
             k = 1.0 / sum(map(_score_getter, parses))
             return [
-                (word, tag, normal_form, score*k, methods_stack)
+                (word, tag, normal_form, score * k, methods_stack)
                 for (word, tag, normal_form, score, methods_stack) in parses
             ]
 
@@ -94,9 +94,10 @@ class ProbabilityEstimator:
     def apply_to_tags(self, word, word_lower, tags):
         if not tags:
             return tags
-        return sorted(tags,
+        return sorted(
+            tags,
             key=lambda tag: self.p_t_given_w.prob(word_lower, tag),
-            reverse=True
+            reverse=True,
         )
 
 
@@ -375,6 +376,7 @@ class MorphAnalyzer:
                                 if required_grammemes <= f[1].grammemes]
 
         grammemes = form[1].updated_grammemes(required_grammemes)
+
         def similarity(frm):
             tag = frm[1]
             return len(grammemes & tag.grammemes) - 0.1 * len(grammemes ^ tag.grammemes)
@@ -417,8 +419,8 @@ class MorphAnalyzer:
 
         """
         return self.dictionary.word_is_known(
-            word = word.lower(),
-            substitutes_compiled = None if strict else self.char_substitutes
+            word=word.lower(),
+            substitutes_compiled=None if strict else self.char_substitutes
         )
 
     @property

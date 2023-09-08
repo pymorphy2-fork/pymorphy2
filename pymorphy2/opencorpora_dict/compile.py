@@ -109,7 +109,6 @@ def compile_parsed_dict(parsed_dict, compile_options=None):
             word = paradigm[0][2] + stem + paradigm[0][0]
             logger.debug("%20s %15s %15s %15s", word, len(gramtab), len(words), len(paradigms))
 
-
     logger.debug("%20s %15s %15s %15s", "total:", len(gramtab), len(words), len(paradigms))
     logger.debug("linearizing paradigms")
 
@@ -126,6 +125,7 @@ def compile_parsed_dict(parsed_dict, compile_options=None):
     paradigm_prefix_ids = dict(
         (pref, idx) for idx, pref in enumerate(paradigm_prefixes)
     )
+
     def fix_strings(paradigm):
         """ Replace suffix and prefix with the respective id numbers. """
         para = []
@@ -310,7 +310,7 @@ def _suffixes_prediction_data(words, paradigm_popularity, gramtab, paradigms, su
 
         POS = tuple(tag.replace(' ', ',', 1).split(','))[0]
 
-        for i in range(max(len(form_suffix), 1), max_suffix_length+1): #was: 1,2,3,4,5
+        for i in range(max(len(form_suffix), 1), max_suffix_length + 1):  # was: 1,2,3,4,5
             word_end = word[-i:]
             ending_counts[word_end] += 1
             prefix_endings[form_prefix_id][word_end][POS][(para_id, idx)] += 1
@@ -376,4 +376,3 @@ def _create_out_path(out_path, overwrite=False):
             logger.warning("Output folder already exists!")
             return False
     return True
-

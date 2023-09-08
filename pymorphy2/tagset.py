@@ -332,8 +332,6 @@ class OpencorporaTag:
                 raise ValueError("Grammeme is unknown: %s" % grammeme)
             return False
 
-    # FIXME: __repr__ and __str__ always return unicode,
-    # but they should return a byte string under Python 2.x.
     def __str__(self):
         return self._str
 

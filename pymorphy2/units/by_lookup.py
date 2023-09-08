@@ -87,7 +87,7 @@ class DictionaryAnalyzer(BaseAnalyzerUnit):
         tag = self.dict.build_tag_info(para_id, 0)
         new_methods_stack = self._fix_stack(methods_stack, normal_form, para_id, 0)
 
-        return (normal_form, tag, normal_form, 1.0, new_methods_stack)
+        return normal_form, tag, normal_form, 1.0, new_methods_stack
 
     def _extract_para_info(self, methods_stack):
         # This method assumes that DictionaryAnalyzer is the first

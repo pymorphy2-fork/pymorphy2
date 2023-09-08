@@ -94,7 +94,7 @@ def main(argv=None):
         logger.debug(args)
 
         if args['mem_usage']:
-            return show_dict_mem_usage(lang, path, args['--verbose'])
+            return show_dict_mem_usage(lang, path)
         elif args['meta']:
             return show_dict_meta(lang, path)
 
@@ -109,7 +109,7 @@ def _open_for_read(fn):
 
 # ============================ Commands ===========================
 
-def show_dict_mem_usage(lang, dict_path=None, verbose=False):
+def show_dict_mem_usage(lang, dict_path=None):
     """
     Show dictionary memory usage.
     """
