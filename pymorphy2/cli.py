@@ -3,9 +3,10 @@ import logging
 import operator
 import sys
 import time
+from functools import lru_cache
 
 import pymorphy2
-from pymorphy2.cache import lru_cache, memoized_with_single_argument
+from pymorphy2.cache import memoized_with_single_argument
 from pymorphy2.tokenizers import simple_word_tokenize
 from pymorphy2.utils import get_mem_usage
 
