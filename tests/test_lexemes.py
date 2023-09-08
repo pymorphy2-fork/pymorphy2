@@ -226,7 +226,7 @@ def test_full_lexemes(lexeme, morph):
 
 
 def assert_has_full_lexeme(word, forms, morph):
-    assert any([(f.word, str(f.tag)) for f in p.lexeme] for p in morph.parse(word)), \
+    assert any([(f.word, str(f.tag)) for f in p.lexeme] == forms for p in morph.parse(word)), \
         f"Word {word} doesn't have lexeme {forms}"
 
 
