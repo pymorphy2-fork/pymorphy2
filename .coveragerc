@@ -1,4 +1,5 @@
 [run]
 branch = True
 omit =
-    pymorphy2/vendor/*
+    benchmarks/*
+    setup.py
