@@ -1,17 +1,13 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import unicode_literals, print_function, division
-
-import sys
-import logging
-import time
 import codecs
+import logging
 import operator
+import sys
+import time
 
 import pymorphy2
 from pymorphy2.cache import lru_cache, memoized_with_single_argument
-from pymorphy2.utils import get_mem_usage
 from pymorphy2.tokenizers import simple_word_tokenize
+from pymorphy2.utils import get_mem_usage
 
 PY2 = sys.version_info[0] == 2
 

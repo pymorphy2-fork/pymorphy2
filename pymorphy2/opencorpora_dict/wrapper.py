@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import, unicode_literals, division
 import logging
+
 from .storage import load_dict
 
 logger = logging.getLogger(__name__)

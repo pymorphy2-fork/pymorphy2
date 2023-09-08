@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 This module exposes lru_cache decorator, trying import it from
 
@@ -8,7 +7,6 @@ This module exposes lru_cache decorator, trying import it from
 
 Also, it provides a caching decorator for functions with a single argument.
 """
-from __future__ import absolute_import
 import functools
 
 try:

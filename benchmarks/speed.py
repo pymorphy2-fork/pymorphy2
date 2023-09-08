@@ -1,13 +1,11 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import, unicode_literals, division
-import logging
 import codecs
-import os
-import functools
 import datetime
+import functools
+import logging
+import os
 
-from pymorphy2 import MorphAnalyzer
 from benchmarks import utils
+from pymorphy2 import MorphAnalyzer
 
 logger = logging.getLogger('pymorphy2.bench')
 

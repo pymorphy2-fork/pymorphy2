@@ -1,15 +1,11 @@
-# -*- coding: utf-8 -*-
 """
 Analyzer units for unknown words with hyphens
 ---------------------------------------------
 """
-
-from __future__ import absolute_import, unicode_literals, division
 from pymorphy2.dawg import PrefixMatcher
 
 from pymorphy2.units.base import BaseAnalyzerUnit, AnalogyAnalizerUnit
-from pymorphy2.units.utils import (add_parse_if_not_seen, add_tag_if_not_seen,
-                                   with_suffix, without_fixed_suffix,
+from pymorphy2.units.utils import (add_parse_if_not_seen, with_suffix, without_fixed_suffix,
                                    with_prefix, without_fixed_prefix,
                                    replace_methods_stack)
 

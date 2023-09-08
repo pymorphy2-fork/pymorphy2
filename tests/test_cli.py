@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import
 import logging
 
-import pytest
 import docopt
+import pytest
 
 from pymorphy2 import cli
 

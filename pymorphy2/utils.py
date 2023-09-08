@@ -1,12 +1,8 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import
-# unicode_literals here would break tests
-
-import os
+import codecs
 import heapq
 import itertools
-import codecs
 import json
+import os
 
 
 def get_mem_usage():

@@ -1,17 +1,15 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import, unicode_literals
 import os
 
 import pytest
 
 import pymorphy2
+from pymorphy2 import lang
+from pymorphy2.dawg import assert_can_create
 from pymorphy2.opencorpora_dict.compile import (
     _to_paradigm,
     convert_to_pymorphy2
 )
 from pymorphy2.opencorpora_dict.parse import parse_opencorpora_xml
-from pymorphy2.dawg import assert_can_create
-from pymorphy2 import lang
 
 
 class TestToyDictionary:

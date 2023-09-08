@@ -1,15 +1,13 @@
-# -*- coding: utf-8 -*-
 """
 :mod:`pymorphy2.opencorpora_dict.storage` is a
 module for saving and loading pymorphy2 dictionaries.
 """
-from __future__ import absolute_import, unicode_literals
-import datetime
-import os
-import logging
-import collections
-import itertools
 import array
+import collections
+import datetime
+import itertools
+import logging
+import os
 import struct
 
 try:

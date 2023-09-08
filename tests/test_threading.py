@@ -1,12 +1,9 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import
 import concurrent.futures
 import random
-import pytest
-import pymorphy2
 
-from utils import assert_parse_is_correct
+import pymorphy2
 from test_parsing import PARSES
+from utils import assert_parse_is_correct
 
 
 def _check_analyzer(morph, parses):

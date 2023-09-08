@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Module for estimating P(t|w) from partially annotated OpenCorpora XML dump
 and saving this information to a file.
@@ -6,12 +5,12 @@ and saving this information to a file.
 This module requires NLTK 3.x, opencorpora-tools>=0.4.4 and dawg >= 0.7
 packages for probability estimation and resulting file creation.
 """
-from __future__ import absolute_import
-import os
 import logging
+import os
+
 from pymorphy2 import MorphAnalyzer
-from pymorphy2.opencorpora_dict.preprocess import tag2grammemes
 from pymorphy2.dawg import ConditionalProbDistDAWG
+from pymorphy2.opencorpora_dict.preprocess import tag2grammemes
 from pymorphy2.opencorpora_dict.storage import update_meta
 from pymorphy2.utils import with_progress
 

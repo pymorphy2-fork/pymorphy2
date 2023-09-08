@@ -1,16 +1,14 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function, unicode_literals, division
-import os
-import heapq
 import collections
+import heapq
 import logging
-import threading
 import operator
+import os
+import threading
 import warnings
 
+import pymorphy2.lang
 from pymorphy2 import opencorpora_dict
 from pymorphy2.dawg import ConditionalProbDistDAWG
-import pymorphy2.lang
 
 logger = logging.getLogger(__name__)
 

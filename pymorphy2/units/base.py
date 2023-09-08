@@ -1,13 +1,9 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import, unicode_literals, division
-
-from pymorphy2.utils import kwargs_repr
 from pymorphy2.units.utils import (
     without_last_method,
     append_method,
     add_tag_if_not_seen,
 )
-
+from pymorphy2.utils import kwargs_repr
 
 try:
     from inspect import getargspec

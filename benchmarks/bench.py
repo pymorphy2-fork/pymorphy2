@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 """
 Pymorphy2 benchmark utility.
 
@@ -15,8 +13,9 @@ Options:
 
 """
 import logging
-import sys
 import os
+import sys
+
 from docopt import docopt
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))

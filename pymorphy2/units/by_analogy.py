@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Analogy analyzer units
 ----------------------
@@ -7,11 +6,9 @@ This module provides analyzer units that analyzes unknown words by looking
 at how similar known words are analyzed.
 
 """
-
-from __future__ import absolute_import, unicode_literals, division
-
 import operator
 
+from pymorphy2.dawg import PrefixMatcher
 from pymorphy2.units.base import AnalogyAnalizerUnit
 from pymorphy2.units.by_lookup import DictionaryAnalyzer
 from pymorphy2.units.utils import (
@@ -21,7 +18,6 @@ from pymorphy2.units.utils import (
     with_prefix
 )
 from pymorphy2.utils import word_splits
-from pymorphy2.dawg import PrefixMatcher
 
 _cnt_getter = operator.itemgetter(3)
 

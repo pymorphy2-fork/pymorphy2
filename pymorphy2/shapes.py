@@ -1,13 +1,10 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import
-# unicode_literals future import is not needed and breaks 2.x tests
-
 import re
-import warnings
 import unicodedata
-
+import warnings
 
 _latin_letters_cache = {}
+
+
 def is_latin_char(uchr):
     try:
         return _latin_letters_cache[uchr]
@@ -36,8 +33,8 @@ def is_latin(token):
 
     """
     return (
-        any(ch.isalpha() for ch in token) and
-        all(is_latin_char(ch) for ch in token if ch.isalpha())
+            any(ch.isalpha() for ch in token) and
+            all(is_latin_char(ch) for ch in token if ch.isalpha())
     )
 
 
@@ -62,9 +59,9 @@ def is_punctuation(token):
         token = token.decode('ascii')
 
     return (
-        bool(token) and
-        not token.isspace() and
-        all(unicodedata.category(ch)[0] == 'P' for ch in token if not ch.isspace())
+            bool(token) and
+            not token.isspace() and
+            all(unicodedata.category(ch)[0] == 'P' for ch in token if not ch.isspace())
     )
 
 
@@ -79,6 +76,7 @@ ROMAN_NUMBERS_RE = re.compile("""
                         #        or 5-8 (V, followed by 0 to 3 I's)
     $                   # end of string
 """, re.VERBOSE | re.IGNORECASE)
+
 
 def is_roman_number(token, _match=ROMAN_NUMBERS_RE.match):
     """

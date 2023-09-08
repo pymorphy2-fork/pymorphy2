@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import, unicode_literals
-
 def test_indexing(morph):
     assert len(morph.parse('стреляли')) == 1
     p = morph.parse('стреляли')[0]

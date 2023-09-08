@@ -1,12 +1,9 @@
-# -*- coding: utf-8 -*-
 """
 :mod:`pymorphy2.opencorpora_dict.parse` is a
 module for OpenCorpora XML dictionaries parsing.
 """
-from __future__ import absolute_import, unicode_literals, division
-
-import logging
 import collections
+import logging
 
 try:
     from lxml.etree import iterparse

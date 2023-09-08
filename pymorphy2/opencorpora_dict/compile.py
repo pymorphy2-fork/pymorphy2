@@ -1,16 +1,14 @@
-# -*- coding: utf-8 -*-
 """
 :mod:`pymorphy2.opencorpora_dict.compile` is a
 module for converting OpenCorpora dictionaries
 to pymorphy2 representation.
 """
-from __future__ import absolute_import, unicode_literals
-import os
-import logging
+import array
 import collections
 import itertools
-import array
+import logging
 import operator
+import os
 
 try:
     izip = itertools.izip

@@ -1,12 +1,10 @@
-# -*- coding: utf-8 -*-
 """
 Dictionary analyzer unit
 ------------------------
 """
-from __future__ import absolute_import, division, unicode_literals
 import logging
-from pymorphy2.units.base import BaseAnalyzerUnit
 
+from pymorphy2.units.base import BaseAnalyzerUnit
 
 logger = logging.getLogger(__name__)
 

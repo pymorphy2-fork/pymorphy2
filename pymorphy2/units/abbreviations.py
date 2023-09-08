@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
 """
 Analyzer units for abbreviated words
 ------------------------------------
 """
-from __future__ import absolute_import, unicode_literals, division
 from pymorphy2.units.base import BaseAnalyzerUnit
 
 

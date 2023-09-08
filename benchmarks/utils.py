@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import, unicode_literals, division
+import gc
 import time
 import timeit
-import gc
+
 
 def measure(func, inner_iterations=1, repeats=5):
     """
