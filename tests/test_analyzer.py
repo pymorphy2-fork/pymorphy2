@@ -1,13 +1,12 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import, unicode_literals
 import pickle
+
 import pytest
+
 import pymorphy2
-from pymorphy2.units.by_lookup import DictionaryAnalyzer
+from pymorphy2 import lang
 from pymorphy2.units.by_analogy import UnknownPrefixAnalyzer, KnownPrefixAnalyzer
 from pymorphy2.units.by_hyphen import HyphenatedWordsAnalyzer
-from pymorphy2 import lang
-
+from pymorphy2.units.by_lookup import DictionaryAnalyzer
 
 # TODO: move most of tests to test_parsing
 

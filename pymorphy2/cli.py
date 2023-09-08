@@ -1,19 +1,12 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import unicode_literals, print_function, division
-
-import sys
 import logging
-import time
-import codecs
 import operator
+import sys
+import time
+from functools import lru_cache
 
 import pymorphy2
-from pymorphy2.cache import lru_cache, memoized_with_single_argument
-from pymorphy2.utils import get_mem_usage
 from pymorphy2.tokenizers import simple_word_tokenize
-
-PY2 = sys.version_info[0] == 2
+from pymorphy2.utils import get_mem_usage
 
 # Hacks are here to make docstring compatible with both
 # docopt and sphinx.ext.autodoc.
@@ -80,10 +73,7 @@ def main(argv=None):
         else:
             score, lemmatize, tag = True, True, True
 
-        if PY2:
-            out_file = codecs.getwriter('utf8')(sys.stdout)
-        else:
-            out_file = sys.stdout
+        out_file = sys.stdout
 
         return parse(
             morph=morph,
@@ -112,14 +102,9 @@ def main(argv=None):
 def _open_for_read(fn):
     """ Open a file for reading """
     if fn in ['-', '', None]:
-        if PY2:
-            return codecs.getreader('utf8')(sys.stdin)
-        else:
-            return sys.stdin
-    if PY2:
-        return codecs.open(fn, 'rt', encoding='utf8')
-    else:
-        return open(fn, 'rt', encoding='utf8')
+        return sys.stdin
+
+    return open(fn, 'rt', encoding='utf8')
 
 
 # ============================ Commands ===========================
@@ -178,7 +163,7 @@ def parse(morph, in_file, out_file, tokenize, score, normal_form, tag,
 
     _parse = parser.parse
     if cache_size == 'unlim':
-        _parse = memoized_with_single_argument({})(_parse)
+        _parse = lru_cache(None)(_parse)
     else:
         cache_size = int(cache_size)
         if cache_size:
@@ -189,7 +174,7 @@ def parse(morph, in_file, out_file, tokenize, score, normal_form, tag,
         _write(_parse(token))
 
 
-class _TokenParserFormatter(object):
+class _TokenParserFormatter:
     """
     This class defines its `parse` method based on arguments passed.
     Some ugly code is to make all ifs work only once, not for each token.
@@ -218,14 +203,14 @@ class _TokenParserFormatter(object):
                 if score:
                     def _parse_token(tok):
                         seq = [
-                            "%s:%0.3f=%s" % (p.normal_form, p.score, p.tag)
+                            f"{p.normal_form}:{p.score:0.3f}={p.tag}"
                             for p in morph_parse(tok) if p.score >= thresh
                         ]
                         return tpl % (tok, join(seq))
                 else:
                     def _parse_token(tok):
                         seq = [
-                            "%s:%s" % (p.normal_form, p.tag)
+                            f"{p.normal_form}:{p.tag}"
                             for p in morph_parse(tok) if p.score >= thresh
                         ]
                         return tpl % (tok, join(seq))
@@ -241,7 +226,7 @@ class _TokenParserFormatter(object):
                         key=val, reverse=True
                     )
                     if score:
-                        seq = ["%s:%0.3f" % (lemma, w) for (lemma, w) in items]
+                        seq = [f"{lemma}:{w:0.3f}" for (lemma, w) in items]
                     else:
                         seq = [lemma for (lemma, w) in items]
 
@@ -250,7 +235,7 @@ class _TokenParserFormatter(object):
             if score:
                 def _parse_token(tok):
                     seq = [
-                        "%0.3f=%s" % (p.score, p.tag)
+                        f"{p.score:0.3f}={p.tag}"
                         for p in morph_parse(tok) if p.score >= thresh
                     ]
                     return tpl % (tok, join(seq))

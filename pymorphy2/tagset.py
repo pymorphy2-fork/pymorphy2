@@ -1,22 +1,17 @@
-# -*- coding: utf-8 -*-
 """
 Utils for working with grammatical tags.
 """
-from __future__ import absolute_import, unicode_literals
 import collections
+from sys import intern
 
-try:
-    from sys import intern
-except ImportError:
-    # python 2.x has builtin ``intern`` function
-    pass
 
 # a bit of *heavy* magic...
-class _select_grammeme_from(object):
+class _select_grammeme_from:
     """
     Descriptor object for accessing grammemes of certain classes
     (e.g. number or voice).
     """
+
     def __init__(self, grammeme_set):
         self.grammeme_set = grammeme_set
         # ... are descriptors not magical enough?
@@ -24,7 +19,7 @@ class _select_grammeme_from(object):
         # In order to fight typos, raise an exception
         # if a result is compared to a grammeme which
         # is not in a set of allowed grammemes.
-        _str = type("unicode string")
+        _str = str
 
         class TypedGrammeme(_str):
             def __eq__(self, other):
@@ -32,7 +27,8 @@ class _select_grammeme_from(object):
                     return False
                 if other not in grammeme_set:
                     known_grammemes = ", ".join(grammeme_set)
-                    raise ValueError("'%s' is not a valid grammeme for this attribute. Valid grammemes: %s" % (other, known_grammemes))
+                    raise ValueError("'{}' is not a valid grammeme for this attribute. Valid grammemes: {}".format(
+                        other, known_grammemes))
                 return _str.__eq__(self, other)
 
             def __ne__(self, other):
@@ -55,7 +51,7 @@ class _select_grammeme_from(object):
 
 
 # Design notes: Tag objects are immutable, but the tag class is mutable.
-class OpencorporaTag(object):
+class OpencorporaTag:
     """
     Wrapper class for OpenCorpora.org tags.
 
@@ -98,9 +94,9 @@ class OpencorporaTag(object):
         False
         >>> 'Geox' in tag
         False
-        >>> set(['VERB', 'perf']) in tag
+        >>> {'VERB', 'perf'} in tag
         True
-        >>> set(['VERB', 'perf', 'sing']) in tag
+        >>> {'VERB', 'perf', 'sing'} in tag
         False
 
     In order to fight typos, for unknown grammemes an exception is raised::
@@ -109,7 +105,7 @@ class OpencorporaTag(object):
         Traceback (most recent call last):
         ...
         ValueError: Grammeme is unknown: foobar
-        >>> set(['NOUN', 'foo', 'bar']) in tag
+        >>> {'NOUN', 'foo', 'bar'} in tag
         Traceback (most recent call last):
         ...
         ValueError: Grammemes are unknown: {'bar', 'foo'}
@@ -225,13 +221,11 @@ class OpencorporaTag(object):
     # ----------------------------------------------------------
     FORMAT = 'opencorpora-int'
 
-
     # Helper attributes for inflection/declension routines
     # ----------------------------------------------------
-    _NON_PRODUCTIVE_GRAMMEMES = set(['NUMR', 'NPRO', 'PRED', 'PREP',
-                                     'CONJ', 'PRCL', 'INTJ', 'Apro'])
+    _NON_PRODUCTIVE_GRAMMEMES = {'NUMR', 'NPRO', 'PRED', 'PREP', 'CONJ', 'PRCL', 'INTJ', 'Apro'}
     _EXTRA_INCOMPATIBLE = {  # XXX: is it a good idea to have these rules?
-        'plur': set(['GNdr']),
+        'plur': {'GNdr'},
         # XXX: how to use rules from OpenCorpora?
         # (they have "lexeme/form" separation)
     }
@@ -346,7 +340,6 @@ class OpencorporaTag(object):
     def __repr__(self):
         return "OpencorporaTag('%s')" % self
 
-
     def __eq__(self, other):
         return self._grammemes_tuple == other._grammemes_tuple
 
@@ -367,7 +360,6 @@ class OpencorporaTag(object):
 
     def __reduce__(self):
         return self.__class__, (self._str,), None
-
 
     def is_productive(self):
         return not self.grammemes & self._NON_PRODUCTIVE_GRAMMEMES
@@ -474,7 +466,7 @@ class OpencorporaTag(object):
     def _from_internal_grammeme(cls, grammeme):
         return grammeme
 
-    def numeral_agreement_grammemes(self, num, animacy = None):
+    def numeral_agreement_grammemes(self, num, animacy=None):
         if (num % 10 == 1) and (num % 100 != 11):
             index = 0
         elif (num % 10 >= 2) and (num % 10 <= 4) and (num % 100 < 10 or num % 100 >= 20):
@@ -487,10 +479,10 @@ class OpencorporaTag(object):
 
         case = self.case
         # animacy make sense in accs case, unfortunately, you cant always get animacy from the tag (sing,femn)
-        if self.animacy: # prefer animacy from the tag
-            animacy = self.animacy # fallback to the argument
+        if self.animacy:  # prefer animacy from the tag
+            animacy = self.animacy  # fallback to the argument
         if index == 0:
-            return set(['sing', case])
+            return {'sing', case}
         elif index == 1:
             if case == 'accs':
                 if animacy == 'inan':
@@ -499,24 +491,23 @@ class OpencorporaTag(object):
                     case = 'gent'
             if case in ('nomn', 'accs'):
                 if self.POS == 'NOUN':
-                    return set(['sing', 'gent'])
+                    return {'sing', 'gent'}
                 if self.gender == 'femn':
-                    return set(['plur', 'nomn'])
-                return set(['plur', 'gent'])
-            return set(['plur', case])
+                    return {'plur', 'nomn'}
+                return {'plur', 'gent'}
+            return {'plur', case}
         elif index == 2:
             if case in ('nomn', 'accs'):
-                return set(['plur', 'gent'])
-            return set(['plur', case])
+                return {'plur', 'gent'}
+            return {'plur', case}
 
-    #@classmethod
-    #def _clone_class(cls):
+    # @classmethod
+    # def _clone_class(cls):
     #    Tag = type(cls.__name__, (cls,), {
     #         'KNOWN_GRAMMEMES': cls.KNOWN_GRAMMEMES.copy(),
     #    })
     #    # copyreg.pickle(Tag, pickle_tag)
     #    return Tag
-
 
 
 class CyrillicOpencorporaTag(OpencorporaTag):
@@ -551,7 +542,7 @@ class CyrillicOpencorporaTag(OpencorporaTag):
         information obtained from XML dictionary.
         """
         cls._init_alias_map(dict_grammemes)
-        super(CyrillicOpencorporaTag, cls)._init_grammemes(dict_grammemes)
+        super()._init_grammemes(dict_grammemes)
 
         GRAMMEME_INDICES = collections.defaultdict(int)
         for name, idx in cls._GRAMMEME_INDICES.items():

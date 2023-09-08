@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import
 import logging
 
-import pytest
 import docopt
+import pytest
 
 from pymorphy2 import cli
 
@@ -37,14 +35,14 @@ def test_parse_basic(tmpdir, capsys):
     logging.raiseExceptions = False
     try:
         p = tmpdir.join('words.txt')
-        p.write_text(u"""
+        p.write_text("""
         крот пришел
         """, encoding='utf8')
         run_pymorphy2(["parse", str(p)])
         out, err = capsys.readouterr()
         print(out)
         print(err)
-        assert out.strip() == u"""
+        assert out.strip() == """
 крот{крот:1.000=NOUN,anim,masc sing,nomn}
 пришел{прийти:1.000=VERB,perf,intr masc,sing,past,indc}
         """.strip()

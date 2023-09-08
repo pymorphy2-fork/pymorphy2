@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import
-
-
 def assert_parse_is_correct(parses, word, normal_form, tag):
     """
     Check if one of the word parses has normal form ``normal_form``

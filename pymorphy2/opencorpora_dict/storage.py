@@ -1,25 +1,17 @@
-# -*- coding: utf-8 -*-
 """
 :mod:`pymorphy2.opencorpora_dict.storage` is a
 module for saving and loading pymorphy2 dictionaries.
 """
-from __future__ import absolute_import, unicode_literals
-import datetime
-import os
-import logging
-import collections
-import itertools
 import array
+import collections
+import datetime
+import logging
+import os
 import struct
 
-try:
-    izip = itertools.izip
-except AttributeError:
-    izip = zip
-
 import pymorphy2
-from pymorphy2 import tagset
 from pymorphy2 import dawg
+from pymorphy2 import tagset
 from pymorphy2.utils import json_write, json_read
 
 logger = logging.getLogger(__name__)
@@ -103,9 +95,9 @@ def save_compiled_dict(compiled_dict, out_path, source_name, language_code):
         json_write(_f(gramtab_name), new_gramtab)
 
     with open(_f('paradigms.array'), 'wb') as f:
-        f.write(struct.pack(str("<H"), len(compiled_dict.paradigms)))
+        f.write(struct.pack("<H", len(compiled_dict.paradigms)))
         for para in compiled_dict.paradigms:
-            f.write(struct.pack(str("<H"), len(para)))
+            f.write(struct.pack("<H", len(para)))
             para.tofile(f)
 
     json_write(_f('suffixes.json'), compiled_dict.suffixes)
@@ -117,7 +109,7 @@ def save_compiled_dict(compiled_dict, out_path, source_name, language_code):
     logger.debug("computing metadata..")
 
     def _dawg_len(dawg):
-        return sum(1 for k in dawg.iterkeys())
+        return sum(1 for k in dawg.keys())
 
     logger.debug('  words_dawg_len')
     words_dawg_len = _dawg_len(compiled_dict.words_dawg)
@@ -190,7 +182,8 @@ def _load_gramtab(meta, gramtab_format, path):
     """ Load gramtab (a list of tags) """
     gramtab_formats = meta.get('gramtab_formats', {})
     if gramtab_format not in gramtab_formats:
-        raise ValueError("This gramtab format (%s) is unavailable; available formats: %s" % (gramtab_format, gramtab_formats.keys()))
+        raise ValueError("This gramtab format ({}) is unavailable; available formats: {}".format(gramtab_format,
+                                                                                                 gramtab_formats.keys()))
 
     gramtab_filename = os.path.join(path, gramtab_formats[gramtab_format])
     return json_read(gramtab_filename)
@@ -200,12 +193,12 @@ def _load_paradigms(filename):
     """ Load paradigms data """
     paradigms = []
     with open(filename, 'rb') as f:
-        paradigms_count = struct.unpack(str("<H"), f.read(2))[0]
+        paradigms_count = struct.unpack("<H", f.read(2))[0]
 
         for x in range(paradigms_count):
-            paradigm_len = struct.unpack(str("<H"), f.read(2))[0]
+            paradigm_len = struct.unpack("<H", f.read(2))[0]
 
-            para = array.array(str("H"))
+            para = array.array("H")
             para.fromfile(f, paradigm_len)
 
             paradigms.append(para)
@@ -223,8 +216,8 @@ def _assert_format_is_compatible(meta, path):
     curr_major, curr_minor = CURRENT_FORMAT_VERSION.split('.')
 
     if major != curr_major:
-        msg = ("Error loading dictionaries from %s: "
-               "the format ('%s') is not supported; "
-               "required format is '%s.x'.") % (path, format_version, curr_major)
+        msg = (f"Error loading dictionaries from {path}: "
+               f"the format ('{format_version}') is not supported; "
+               f"required format is '{curr_major}.x'.")
         raise ValueError(msg)
 

@@ -1,15 +1,11 @@
-# -*- coding: utf-8 -*-
 """
 Analyzer units for unknown words with hyphens
 ---------------------------------------------
 """
-
-from __future__ import absolute_import, unicode_literals, division
 from pymorphy2.dawg import PrefixMatcher
 
 from pymorphy2.units.base import BaseAnalyzerUnit, AnalogyAnalizerUnit
-from pymorphy2.units.utils import (add_parse_if_not_seen, add_tag_if_not_seen,
-                                   with_suffix, without_fixed_suffix,
+from pymorphy2.units.utils import (add_parse_if_not_seen, with_suffix, without_fixed_suffix,
                                    with_prefix, without_fixed_prefix,
                                    replace_methods_stack)
 
@@ -102,7 +98,7 @@ class HyphenAdverbAnalyzer(BaseAnalyzerUnit):
         self.score_multiplier = score_multiplier
 
     def init(self, morph):
-        super(HyphenAdverbAnalyzer, self).init(morph)
+        super().init(morph)
         self._tag = self.morph.TagClass('ADVB')
 
     def parse(self, word, word_lower, seen_parses):
@@ -129,7 +125,7 @@ class HyphenAdverbAnalyzer(BaseAnalyzerUnit):
             return False
 
         tags = self.morph.tag(word[3:])
-        return any(set(['ADJF', 'sing', 'datv']) in tag for tag in tags)
+        return any({'ADJF', 'sing', 'datv'} in tag for tag in tags)
 
     def normalized(self, form):
         return form
@@ -162,7 +158,7 @@ class HyphenatedWordsAnalyzer(BaseAnalyzerUnit):
         self.skip_prefixes = skip_prefixes
 
     def init(self, morph):
-        super(HyphenatedWordsAnalyzer, self).init(morph)
+        super().init(morph)
         Tag = morph.TagClass
         self._FEATURE_GRAMMEMES = (Tag.PARTS_OF_SPEECH | Tag.NUMBERS |
                                    Tag.CASES | Tag.PERSONS | Tag.TENSES)

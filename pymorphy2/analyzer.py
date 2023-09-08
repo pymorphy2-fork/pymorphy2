@@ -1,16 +1,14 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function, unicode_literals, division
-import os
-import heapq
 import collections
+import heapq
 import logging
-import threading
 import operator
+import os
+import threading
 import warnings
 
+import pymorphy2.lang
 from pymorphy2 import opencorpora_dict
 from pymorphy2.dawg import ConditionalProbDistDAWG
-import pymorphy2.lang
 
 logger = logging.getLogger(__name__)
 
@@ -66,7 +64,7 @@ class Parse(_Parse):
     #     return self._dict.build_paradigm_info(self.para_id)
 
 
-class ProbabilityEstimator(object):
+class ProbabilityEstimator:
     def __init__(self, dict_path):
         cpd_path = os.path.join(dict_path, 'p_t_given_w.intdawg')
         self.p_t_given_w = ConditionalProbDistDAWG().load(cpd_path)
@@ -140,14 +138,12 @@ def lang_dict_path(lang):
         return lang_paths[lang]
 
     raise ValueError(
-        "Can't find a dictionary for language %r. Installed languages: %r. "
-        "Try installing pymorphy2-dicts-%s package." % (
-            lang, list(lang_paths.keys()), lang
-        )
+        f"Can't find a dictionary for language {lang!r}. Installed languages: {list(lang_paths.keys())!r}. "
+        f"Try installing pymorphy2-dicts-{lang} package."
     )
 
 
-class MorphAnalyzer(object):
+class MorphAnalyzer:
     """
     Morphological analyzer for Russian language.
 
@@ -293,8 +289,8 @@ class MorphAnalyzer(object):
         if dictionary.lang != lang:
             # allow incorrect 'lang' values, but show a warning
             warnings.warn(
-                "Dictionary language (%r) doesn't match "
-                "analyzer language (%r)." % (dictionary.lang, lang)
+                f"Dictionary language ({dictionary.lang!r}) doesn't match "
+                f"analyzer language ({lang!r})."
             )
 
         return lang
