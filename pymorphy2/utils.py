@@ -130,7 +130,7 @@ def kwargs_repr(kwargs=None, dont_show_value=None):
     kwargs = kwargs or {}
     dont_show_value = set(dont_show_value or [])
     return ", ".join(
-        "%s=%s" % (k, repr(v) if k not in dont_show_value else "<...>")
+        "{}={}".format(k, repr(v) if k not in dont_show_value else "<...>")
         for k, v in sorted(kwargs.items())
     )
 
@@ -150,8 +150,7 @@ def with_progress(iterable, desc=None, total=None, leave=True):
                     total = len(iterable)
                 except Exception:
                     total = 0
-            for el in tqdm(iterable, desc=desc, total=total, leave=leave):
-                yield el
+            yield from tqdm(iterable, desc=desc, total=total, leave=leave)
             if leave:
                 print("")
 

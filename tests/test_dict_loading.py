@@ -1,3 +1,5 @@
+from importlib.util import find_spec
+
 import pytest
 
 import pymorphy2
@@ -12,11 +14,8 @@ def test_old_dictionaries_supported():
 
 
 def test_old_dictionaries_not_installed():
-    try:
-        import pymorphy2_dicts
+    if not find_spec("pymorphy2_dicts"):
         pytest.skip("pymorphy2_dicts package is installed")
-    except ImportError:
-        pass
 
     with pytest.raises(ValueError):
         pymorphy2.MorphAnalyzer(lang='ru-old')

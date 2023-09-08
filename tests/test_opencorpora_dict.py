@@ -77,7 +77,7 @@ class TestToyDictionary:
         assert morph.normal_forms('а') == ['а']
 
 
-class TestToParadigm(object):
+class TestToParadigm:
 
     def test_simple(self):
         lexeme = [

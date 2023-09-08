@@ -77,7 +77,8 @@ def test_plural_inflected(word, form, result, morph):
     assert len(parsed)
     gram_tag = morph.TagClass(form)
     inflected_word = parsed[0].inflect({gram_tag.case})
-    if gram_tag.animacy and inflected_word.tag.animacy: # morph.parse(u'летящая')[0].inflect({'accs','inan'}).word == u'летящий'
+    if gram_tag.animacy and inflected_word.tag.animacy:
+        # morph.parse('летящая')[0].inflect({'accs','inan'}).word == 'летящий'
         inflected_word = inflected_word.inflect({gram_tag.animacy})
     assert inflected_word.word == result[0]
     for plural, num in zip(result, [1, 2, 5]):

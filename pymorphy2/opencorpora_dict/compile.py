@@ -207,8 +207,8 @@ def _join_lexemes(lexemes, links):
 #    <type id="27">ADJF_TEXT-ADJF_NUMBER</type> # e.g. первый - 1-й
 #    </link_types>
 
-    EXCLUDED_LINK_TYPES = set(['7', '21', '23', '27'])
-#    ALLOWED_LINK_TYPES = set(['3', '4', '5'])
+    EXCLUDED_LINK_TYPES = {'7', '21', '23', '27'}
+    #    ALLOWED_LINK_TYPES = {'3', '4', '5'}
 
     moves = dict()
 
@@ -362,7 +362,7 @@ def _linearized_paradigm(paradigm):
     Convert ``paradigm`` (a list of tuples with numbers)
     to 1-dimensional array.array (for reduced memory usage).
     """
-    return array.array(str("H"), list(itertools.chain(*zip(*paradigm))))
+    return array.array("H", list(itertools.chain(*zip(*paradigm))))
 
 
 def _create_out_path(out_path, overwrite=False):

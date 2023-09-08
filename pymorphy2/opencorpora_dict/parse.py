@@ -14,10 +14,7 @@ try:
             del elem.getparent()[0]
 
 except ImportError:
-    try:
-        from xml.etree.cElementTree import iterparse
-    except ImportError:
-        from xml.etree.ElementTree import iterparse
+    from xml.etree.ElementTree import iterparse
 
     def xml_clear_elem(elem):
         elem.clear()
@@ -32,7 +29,7 @@ ParsedDictionary = collections.namedtuple('ParsedDictionary', 'lexemes links gra
 
 def get_dictionary_info(filename, elem_limit=1000):
     """ Return dictionary version and revision """
-    for idx, (ev, elem) in enumerate(iterparse(filename, events=(str('start'),))):
+    for idx, (ev, elem) in enumerate(iterparse(filename, events=('start',))):
         if elem.tag == 'dictionary':
             version = elem.get('version')
             revision = elem.get('revision')
@@ -53,7 +50,7 @@ def parse_opencorpora_xml(filename):
 
     version, revision = get_dictionary_info(filename)
     logger.info("dictionary v%s, rev%s", version, revision)
-    interesting_tags = set(['grammeme', 'lemma', 'link'])
+    interesting_tags = {'grammeme', 'lemma', 'link'}
 
     def _parse(filename):
         for ev, elem in iterparse(filename):

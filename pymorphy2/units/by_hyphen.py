@@ -98,7 +98,7 @@ class HyphenAdverbAnalyzer(BaseAnalyzerUnit):
         self.score_multiplier = score_multiplier
 
     def init(self, morph):
-        super(HyphenAdverbAnalyzer, self).init(morph)
+        super().init(morph)
         self._tag = self.morph.TagClass('ADVB')
 
     def parse(self, word, word_lower, seen_parses):
@@ -125,7 +125,7 @@ class HyphenAdverbAnalyzer(BaseAnalyzerUnit):
             return False
 
         tags = self.morph.tag(word[3:])
-        return any(set(['ADJF', 'sing', 'datv']) in tag for tag in tags)
+        return any({'ADJF', 'sing', 'datv'} in tag for tag in tags)
 
     def normalized(self, form):
         return form
@@ -158,7 +158,7 @@ class HyphenatedWordsAnalyzer(BaseAnalyzerUnit):
         self.skip_prefixes = skip_prefixes
 
     def init(self, morph):
-        super(HyphenatedWordsAnalyzer, self).init(morph)
+        super().init(morph)
         Tag = morph.TagClass
         self._FEATURE_GRAMMEMES = (Tag.PARTS_OF_SPEECH | Tag.NUMBERS |
                                    Tag.CASES | Tag.PERSONS | Tag.TENSES)

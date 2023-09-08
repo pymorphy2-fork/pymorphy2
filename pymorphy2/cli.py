@@ -174,7 +174,7 @@ def parse(morph, in_file, out_file, tokenize, score, normal_form, tag,
         _write(_parse(token))
 
 
-class _TokenParserFormatter(object):
+class _TokenParserFormatter:
     """
     This class defines its `parse` method based on arguments passed.
     Some ugly code is to make all ifs work only once, not for each token.
@@ -203,14 +203,14 @@ class _TokenParserFormatter(object):
                 if score:
                     def _parse_token(tok):
                         seq = [
-                            "%s:%0.3f=%s" % (p.normal_form, p.score, p.tag)
+                            f"{p.normal_form}:{p.score:0.3f}={p.tag}"
                             for p in morph_parse(tok) if p.score >= thresh
                         ]
                         return tpl % (tok, join(seq))
                 else:
                     def _parse_token(tok):
                         seq = [
-                            "%s:%s" % (p.normal_form, p.tag)
+                            f"{p.normal_form}:{p.tag}"
                             for p in morph_parse(tok) if p.score >= thresh
                         ]
                         return tpl % (tok, join(seq))
@@ -226,7 +226,7 @@ class _TokenParserFormatter(object):
                         key=val, reverse=True
                     )
                     if score:
-                        seq = ["%s:%0.3f" % (lemma, w) for (lemma, w) in items]
+                        seq = [f"{lemma}:{w:0.3f}" for (lemma, w) in items]
                     else:
                         seq = [lemma for (lemma, w) in items]
 
@@ -235,7 +235,7 @@ class _TokenParserFormatter(object):
             if score:
                 def _parse_token(tok):
                     seq = [
-                        "%0.3f=%s" % (p.score, p.tag)
+                        f"{p.score:0.3f}={p.tag}"
                         for p in morph_parse(tok) if p.score >= thresh
                     ]
                     return tpl % (tok, join(seq))

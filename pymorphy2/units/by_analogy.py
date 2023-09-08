@@ -50,7 +50,7 @@ class KnownPrefixAnalyzer(_PrefixAnalyzer):
         self.min_remainder_length = min_remainder_length
 
     def init(self, morph):
-        super(KnownPrefixAnalyzer, self).init(morph)
+        super().init(morph)
         self.get_prefixes = PrefixMatcher(self.known_prefixes).prefixes
 
     def parse(self, word, word_lower, seen_parses):
@@ -168,7 +168,7 @@ class KnownSuffixAnalyzer(AnalogyAnalizerUnit):
         self.score_multiplier = score_multiplier
 
     def init(self, morph):
-        super(KnownSuffixAnalyzer, self).init(morph)
+        super().init(morph)
         self._paradigm_prefixes = list(reversed(list(enumerate(self.dict.paradigm_prefixes))))
         self._prediction_splits = list(reversed(range(1, self._max_suffix_length()+1)))
 

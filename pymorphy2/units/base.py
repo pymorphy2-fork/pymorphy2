@@ -12,7 +12,7 @@ def inspect_args(func):
     return getfullargspec(func).args
 
 
-class BaseAnalyzerUnit(object):
+class BaseAnalyzerUnit:
     """
     Base class for analyzer units.
 
@@ -58,7 +58,7 @@ class BaseAnalyzerUnit(object):
         cls_text = self.__class__.__name__
         kwargs_text = kwargs_repr(self._get_params(),
                                   self._repr_skip_value_params)
-        return str("%s(%s)") % (cls_text, kwargs_text)
+        return f"{cls_text}({kwargs_text})"
 
     @classmethod
     def _get_param_names(cls):
