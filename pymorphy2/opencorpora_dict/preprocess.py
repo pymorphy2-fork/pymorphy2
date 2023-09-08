@@ -7,8 +7,8 @@ not fully compatible with OpenCorpora.
 """
 import collections
 import logging
+from functools import lru_cache
 
-from pymorphy2.cache import memoized_with_single_argument
 from pymorphy2.utils import with_progress
 
 logger = logging.getLogger(__name__)
@@ -51,13 +51,13 @@ def drop_unsupported_parses(parsed_dict):
         ]
 
 
-@memoized_with_single_argument({})
+@lru_cache()
 def tag2grammemes(tag_str):
     """ Given tag string, return tag grammemes """
     return _split_grammemes(replace_redundant_grammemes(tag_str))
 
 
-@memoized_with_single_argument({})
+@lru_cache()
 def replace_redundant_grammemes(tag_str):
     """ Replace 'loc1', 'gen1' and 'acc1' grammemes in ``tag_str`` """
     return tag_str.replace('loc1', 'loct').replace('gen1', 'gent').replace('acc1', 'accs')

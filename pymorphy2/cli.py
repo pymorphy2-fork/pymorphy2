@@ -5,7 +5,6 @@ import time
 from functools import lru_cache
 
 import pymorphy2
-from pymorphy2.cache import memoized_with_single_argument
 from pymorphy2.tokenizers import simple_word_tokenize
 from pymorphy2.utils import get_mem_usage
 
@@ -164,7 +163,7 @@ def parse(morph, in_file, out_file, tokenize, score, normal_form, tag,
 
     _parse = parser.parse
     if cache_size == 'unlim':
-        _parse = memoized_with_single_argument({})(_parse)
+        _parse = lru_cache(None)(_parse)
     else:
         cache_size = int(cache_size)
         if cache_size:
