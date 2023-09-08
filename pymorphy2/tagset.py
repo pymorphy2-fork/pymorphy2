@@ -452,7 +452,7 @@ class OpencorporaTag:
         for index, (name, parent, alias, description) in enumerate(dict_grammemes):
             cls._GRAMMEME_INDICES[name] = index
             incompatible = cls._EXTRA_INCOMPATIBLE.get(name, set())
-            incompatible = (incompatible | children[parent]) - set([name])
+            incompatible = (incompatible | children[parent]) - {name}
 
             cls._GRAMMEME_INCOMPATIBLE[name] = frozenset(incompatible)
 
@@ -475,7 +475,7 @@ class OpencorporaTag:
             index = 2
 
         if self.POS not in ('NOUN', 'ADJF', 'PRTF'):
-            return set([])
+            return set()
 
         case = self.case
         # animacy make sense in accs case, unfortunately, you cant always get animacy from the tag (sing,femn)
@@ -551,14 +551,14 @@ class CyrillicOpencorporaTag(OpencorporaTag):
 
         GRAMMEME_INCOMPATIBLE = collections.defaultdict(set)
         for name, value in cls._GRAMMEME_INCOMPATIBLE.items():
-            GRAMMEME_INCOMPATIBLE[cls._from_internal_grammeme(name)] = set([
+            GRAMMEME_INCOMPATIBLE[cls._from_internal_grammeme(name)] = {
                 cls._from_internal_grammeme(gr) for gr in value
-            ])
+            }
         cls._GRAMMEME_INCOMPATIBLE = GRAMMEME_INCOMPATIBLE
 
-        cls._NON_PRODUCTIVE_GRAMMEMES = set([
+        cls._NON_PRODUCTIVE_GRAMMEMES = {
             cls._from_internal_grammeme(gr) for gr in cls._NON_PRODUCTIVE_GRAMMEMES
-        ])
+        }
 
     @classmethod
     def _init_alias_map(cls, dict_grammemes):

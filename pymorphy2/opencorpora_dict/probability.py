@@ -82,7 +82,7 @@ def estimate_conditional_tag_probability(morph, corpus_filename, logger=None):
             (w.lower(), tag2grammemes(t))
             for (w, t) in disambig_words
             if len(morph.tag(w)) > 1
-        ) if gr != set(['UNKN'])
+        ) if gr != {'UNKN'}
     ]
 
     logger.info("Computing P(t|w)")

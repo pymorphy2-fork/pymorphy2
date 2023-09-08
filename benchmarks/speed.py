@@ -76,7 +76,7 @@ def bench_parse(morph, words, total_usages, repeats):
 
     def _run_is_noun():
         for word, cnt in words:
-            [set(['NOUN']) in p.tag for p in morph.parse(word)]
+            [{'NOUN'} in p.tag for p in morph.parse(word)]
 
     def _run_is_noun2():
         for word, cnt in words:

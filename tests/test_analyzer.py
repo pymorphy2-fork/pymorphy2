@@ -241,13 +241,13 @@ class TestParseResultClass:
 
     def test_namedtuples(self, morph):
         self.assertNotTuples(morph.parse('кот'))
-        # self.assertNotTuples(morph.inflect('кот', set(['plur'])))
+        # self.assertNotTuples(morph.inflect('кот', {'plur'}))
         # self.assertNotTuples(morph.decline('кот'))
 
     def test_plain_tuples(self):
         morph_plain = pymorphy2.MorphAnalyzer(result_type=None)
         self.assertAllTuples(morph_plain.parse('кот'))
-        # self.assertAllTuples(morph_plain.inflect('кот', set(['plur'])))
+        # self.assertAllTuples(morph_plain.inflect('кот', {'plur'}))
         # self.assertAllTuples(morph_plain.decline('кот'))
 
 
@@ -272,17 +272,17 @@ class TestLatinPredictor:
         assert morph.normal_forms('Maßstab') == ['maßstab']
 
 
-class TetsPunctuationPredictor:
+class TestPunctuationPredictor:
     def test_tag(self, morph):
         assert morph.tag('…') == [morph.TagClass('PNCT')]
 
 
 class TestInitials:
     def assertHasFirstName(self, tags):
-        assert any(set(['Name', 'Abbr']) in tag for tag in tags), tags
+        assert any({'Name', 'Abbr'} in tag for tag in tags), tags
 
     def assertHasPatronymic(self, tags):
-        assert any(set(['Patr', 'Abbr']) in tag for tag in tags), tags
+        assert any({'Patr', 'Abbr'} in tag for tag in tags), tags
 
     def _filter_parse(self, word, grammemes, morph):
         return [p for p in morph.parse(word) if set(grammemes) in p.tag]
