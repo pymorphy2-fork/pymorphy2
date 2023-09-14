@@ -31,7 +31,7 @@ install_requires = [
 
 extras_require = {'fast': []}
 if is_cpython:
-    extras_require['fast'].append("DAWG2 >= 0.9.0")
+    extras_require['fast'].append("DAWG2 >= 0.9.0, < 1.0.0")
 
 setup(
     name='pymorphy2',
