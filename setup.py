@@ -24,7 +24,7 @@ is_cpython = platform.python_implementation() == 'CPython'
 
 
 install_requires = [
-    'dawg-python >= 0.7.1',
+    'dawg2-python >= 0.8.0',
     'pymorphy2-dicts-ru >=2.4, <3.0',
     'docopt-ng >= 0.6',
 ]
