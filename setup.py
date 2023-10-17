@@ -27,6 +27,7 @@ install_requires = [
     'dawg2-python >= 0.8.0',
     'pymorphy2-dicts-ru >=2.4, <3.0',
     'docopt-ng >= 0.6',
+    'setuptools >= 68.2.2',
 ]
 
 extras_require = {'fast': []}
