@@ -27,7 +27,7 @@ install_requires = [
     'dawg2-python >= 0.8.0',
     'pymorphy2-dicts-ru >=2.4, <3.0',
     'docopt-ng >= 0.6',
-    'setuptools >= 68.2.2',
+    'setuptools >= 68.2.2 ; python_version >= "3.12"',
 ]
 
 extras_require = {'fast': []}
@@ -77,6 +77,7 @@ setup(
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Topic :: Software Development :: Libraries :: Python Modules',
