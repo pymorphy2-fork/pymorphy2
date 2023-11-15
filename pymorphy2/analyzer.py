@@ -121,7 +121,7 @@ def _iter_entry_points(*args, **kwargs):
     else:
         for group in args:
             result.update(ep.select(group=group))
-    return list(result)
+    return result
 
 
 def _lang_dict_paths():
