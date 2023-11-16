@@ -1,13 +1,14 @@
 Authors and Contributors
 ========================
 
-* Mikhail Korobov;
-* @radixvinni;
-* @ivirabyan;
-* @anti-social;
-* @insolor;
-* @kuk;
-* @underoll.
+* Mikhail Korobov
+* @radixvinni
+* @ivirabyan
+* @anti-social
+* @insolor
+* @kuk
+* @underoll
+* @valentino-sm
 
 If you contributed to pymorphy2, please add yourself to this list
 (or update your contact information).
