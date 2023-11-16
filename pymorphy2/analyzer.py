@@ -116,7 +116,7 @@ def _iter_entry_points(*args, **kwargs):
     if not hasattr(ep, 'select'):
         # Python < 3.10 old entry_points API
         for group in args:
-            result.update(ep.get(group) or ())
+            result.update(ep.get(group, ()))
     else:
         for group in args:
             result.update(ep.select(group=group))
