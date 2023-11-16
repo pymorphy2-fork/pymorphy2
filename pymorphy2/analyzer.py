@@ -102,12 +102,11 @@ class ProbabilityEstimator:
 
 
 def _iter_entry_points(*args, **kwargs):
-    """ Like pkg_resources.iter_entry_points, but uses a WorkingSet which
-    is not populated at startup. This ensures that all entry points
-    are picked up, even if a package which provides them is installed
+    """
+    Finds entry points of installed packages, including ones installed
     after the current process is started.
 
-    The main use case is to make ``!pip install pymorphy2`` work
+    The main use case is to make ``!pip install pymorphy2-fork`` work
     within a Jupyter or Google Colab notebook.
     See https://github.com/kmike/pymorphy2/issues/131
     """
